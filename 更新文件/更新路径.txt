@@ -1,0 +1,3 @@
+/dashboard/rrd/view/dashboard/screen.py
+/dashboard/rrd/templates/base.html
+/dashboard/rrd/templates/screen/screen.html
