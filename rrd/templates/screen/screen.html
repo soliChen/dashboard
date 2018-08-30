@@ -54,6 +54,23 @@
                             </ul>
                         </div>
                     </li>
+		    <li><!-- insert the Fresh button -->
+			<!-- {{ fresh|safe }} -->
+			<div class="btn-group">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                自动刷新 <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+				<li><a href="#" onclick="geturl('close')"><small>Close</small></a></li>
+                                <li><a href="#" onclick="geturl('5')"><small>5s</small></a></li>
+                                <li><a href="#" onclick="geturl('10')"><small>10s</small></a></li>
+                                <li><a href="#" onclick="geturl('60')"><small>1min</small></a></li>
+                                <li><a href="#" onclick="geturl('300')"><small>5min</small></a></li>
+                                <li><a href="#" onclick="geturl('600')"><small>10min</small></a></li>
+                                <li><a href="#" onclick="geturl('1800')"><small>30min</small></a></li>
+                            </ul>
+                        </div>
+		    </li>
                 {%endif%}
             </ul>
         </div>

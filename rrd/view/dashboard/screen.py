@@ -1,19 +1,4 @@
 #-*- coding:utf-8 -*-
-# Copyright 2017 Xiaomi, Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-
 import json
 import copy
 import json
@@ -119,7 +104,51 @@ def dash_screen(sid):
 
     all_graphs = sorted(all_graphs, key=lambda x:x.position)
 
-    return render_template("screen/screen.html", **locals())
+#    return render_template("screen/screen.html", **locals())
+    # refresh every n seconds
+    metabc='''
+	<script>
+		function geturl(tim){
+			var url = window.location.href;
+			var url_tmp=[];
+			var url_ori="";
+			var fuhao="";
+			if(url.indexOf("fresh=") != -1){     // have "fresh" canshu
+                               if(url.indexOf("?fresh=") != -1){     // "?fresh" canshu
+					url_tmp=url.split("?fresh=");
+					url_ori=url_tmp[0];
+					fuhao="?";
+	                        }else{                               // "&fresh" canshu
+                                	url_tmp=url.split("&fresh=");
+                                        url_ori=url_tmp[0];
+					fuhao="&";
+                        	} alert(url_ori);
+
+                        }else{                         	     // dont have "fresh" canshu
+                                //alert("No fresh Command!");
+				url_ori=url;
+                        }
+			if(tim=="close"){	//close
+				//alert("Close");
+				window.location.href=url_ori;
+			}else{
+				if(url_ori.indexOf("?") == -1){	fuhao="?"; }
+				url_ori=url_ori.replace("#","");
+				url_new=url_ori+fuhao+"fresh="+tim; // idelete # after sid
+			}
+			window.location.href=url_new;
+			//alert(url_new);
+		}
+	</script>	'''
+
+    sec=request.args.get("fresh")
+    metajj=""
+    if sec!=None:
+    	metajj=metabc+''' <META HTTP-EQUIV='Refresh' CONTENT='%s'> ''' % (sec)
+    else:
+        metajj=metabc 
+    return render_template("screen/screen.html", metab=metajj, fresh="FreshButton", **locals())
+
 
 @app.route("/screen/embed/<int:sid>")
 def dash_screen_embed(sid):

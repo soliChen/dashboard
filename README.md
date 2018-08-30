@@ -1,4 +1,4 @@
-1.Build the original project:
+1.Original project:
 https://github.com/open-falcon/dashboard
 
-2.Replace the files that you built with files inside auto-refresh folder. 
+2.Add auto-refresh function to the screen (web interface) with a drop button. 

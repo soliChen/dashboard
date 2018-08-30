@@ -2,6 +2,12 @@
 <html>
 
 <head>
+
+<!-- Auto fresh the page every n seconds
+    <META HTTP-EQUIV="Refresh" CONTENT="10">
+-->
+
+{{ metab|safe }}
     {% block meta %}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +18,8 @@
     </title>
 
     {% block css %}
+		<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/logo.png') }}"/>
+
         <link href="{{url_for('static', filename='bootstrap3/css/bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{url_for('static', filename='select2/select2.css')}}" rel="stylesheet">
         <link href="{{url_for('static', filename='layer/skin/layer.css')}}" rel="stylesheet">
@@ -93,8 +101,11 @@
 {%block body_head%}
 <body style="height:100%; padding-top: 0px; padding-bottom: 40px; font-size:12px;">
 {%endblock%}
-
     {%block navbar%} {%endblock%}
+
+<!-- insert the Fresh button -->    
+<!--    {{ fresh|safe }}	-->
+
     {% block more_css%} {% endblock %}
     {% block more_js%} {% endblock %}
     {% block nav%} {% endblock %}
@@ -111,7 +122,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">{{ _('batch edit') }} Graph</h4>
+                    <h4 class="modal-title">批量编辑 Graph</h4>
                 </div>
                 <div class="modal-body">
                     <div class="edit-area">
@@ -119,8 +130,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"> {{ _('Close') }}</button>
-                    <button type="button" class="btn btn-primary editModalYes">{{ _('OK') }}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary editModalYes">确定</button>
                 </div>
             </div>
         </div>
