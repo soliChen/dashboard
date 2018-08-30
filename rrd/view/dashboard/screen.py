@@ -122,7 +122,7 @@ def dash_screen(sid):
                                 	url_tmp=url.split("&fresh=");
                                         url_ori=url_tmp[0];
 					fuhao="&";
-                        	} alert(url_ori);
+                        	}  //alert(url_ori);
 
                         }else{                         	     // dont have "fresh" canshu
                                 //alert("No fresh Command!");
